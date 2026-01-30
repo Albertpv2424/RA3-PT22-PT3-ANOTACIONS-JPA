@@ -1,12 +1,14 @@
 package es.ilerna.M0486.ra3.pt22.anotacions.jpa.domain;
 
-public class Plane {
+import javax.persistence.*;
+
+public class Plane extends Vehicle {
 
 	private int tailNumber;
 	private boolean autopilot;
 	
-	public Plane(int tailNumber, boolean autopilot) {
-		super();
+	public Plane(String brand, int year, float price, int tailNumber, boolean autopilot) {
+		super(brand, year, price);
 		this.tailNumber = tailNumber;
 		this.autopilot = autopilot;
 	}

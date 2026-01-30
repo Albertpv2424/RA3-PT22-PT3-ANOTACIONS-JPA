@@ -1,11 +1,17 @@
 package es.ilerna.M0486.ra3.pt22.anotacions.jpa.domain;
 
-public class Teacher {
+import javax.persistence.*;
+
+@Entity
+public class Teacher extends Person {
 
 	private String teacherCode;
 
-	public Teacher(String teacherCode) {
-		super();
+	public Teacher() {
+	}
+	
+	public Teacher(String name, String surname, int phoneNumber, String teacherCode) {
+		super(name, surname, phoneNumber);
 		this.teacherCode = teacherCode;
 	}
 

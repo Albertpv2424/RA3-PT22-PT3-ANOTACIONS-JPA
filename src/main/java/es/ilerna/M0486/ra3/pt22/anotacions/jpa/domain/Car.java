@@ -1,37 +1,37 @@
 package es.ilerna.M0486.ra3.pt22.anotacions.jpa.domain;
 
-public class Car {
+import javax.persistence.*;
+
+@Entity
+public class Car extends Vehicle {
 
 	private int doors;
 	private int seats;
 	
+	public Car() {
+	}
 	
-	public Car(int doors, int seats) {
-		super();
+	public Car(String brand, int year, float price, int doors, int seats) {
+		super(brand, year, price);
 		this.doors = doors;
 		this.seats = seats;
 	}
 
-
 	public int getDoors() {
 		return doors;
 	}
-
-
+	
 	public void setDoors(int doors) {
 		this.doors = doors;
 	}
-
 
 	public int getSeats() {
 		return seats;
 	}
 
-
 	public void setSeats(int seats) {
 		this.seats = seats;
 	}
-
 
 	@Override
 	public String toString() {

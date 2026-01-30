@@ -1,15 +1,27 @@
 package es.ilerna.M0486.ra3.pt22.anotacions.jpa.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicle {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String brand;
 	private int year;
 	private float price;
 	
-	public Vehicle(int id, String brand, int year, float price) {
+	@ManyToOne
+	@JoinColumn(name = "person_id")
+	private Person owner;
+	
+	public Vehicle() {
+	}
+	
+	public Vehicle(String brand, int year, float price) {
 		super();
-		this.id = id;
 		this.brand = brand;
 		this.year = year;
 		this.price = price;
@@ -45,6 +57,14 @@ public class Vehicle {
 
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	
+	public Person getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Person owner) {
+		this.owner = owner;
 	}
 
 	@Override
