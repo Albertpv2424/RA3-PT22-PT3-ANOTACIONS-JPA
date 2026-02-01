@@ -83,6 +83,7 @@ public class Main {
 			session.persist(t2);
 			session.persist(t3);
 			
+			//Creamos vehiculos
 			Car car1 = new Car("Toyota", 2020, 18000, 5, 5);
 			Car car2 = new Car("Ford", 2019, 15000, 3, 4);
 			
@@ -92,20 +93,21 @@ public class Main {
 			Motorcycle m1 = new Motorcycle("Yamaha", 2021, 9000, false);
 			Motorcycle m2 = new Motorcycle("Harley-Davidson", 2018, 20000, true);
 			
+			//Asociaos los vehiculos a las personas
 			s1.addVehicle(car1);
 			t2.addVehicle(car2);
 			t1.addVehicle(p1);
 			s3.addVehicle(p2);
 			s2.addVehicle(m1);
 			t3.addVehicle(m2);
-			
+			//Hacemos que persista enla base de datos
 			session.persist(car1);
 			session.persist(car2);
 			session.persist(p1);
 			session.persist(p2);
 			session.persist(m1);
 			session.persist(m2);
-			
+			//Realizamos el commit
 			transaction.commit();
 			System.out.println("Fase 1 completada");
 			
@@ -122,13 +124,15 @@ public class Main {
 			session = HibernateSession.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 			
+			//Cargamos la persona i el vehciulo con id = 1
 			Person p = session.get(Person.class, 1);
 			Vehicle v = session.get(Vehicle.class, 1);
 			
+			//Si ambos existen elimiaremos el vehiculo de la persona
 			if (p != null && v != null) {
 				p.removeVehicle(v);
 			}
-			
+			//Guardamos los cambios con el commit
 			transaction.commit();
 			System.out.println("Fase 2 completada");
 			
@@ -144,15 +148,18 @@ public class Main {
 		try {
 			session = HibernateSession.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
-
+			
+			//Cargamos el vehciulo con id = 1
 			Vehicle v = session.get(Vehicle.class, 1);
-
+			
+			// Y si existe actualizamos sus datos a unos nuevos
 			if (v != null) {
 				v.setBrand("Seat");
 				v.setYear(2022);
 				v.setPrice(19999);
 			}
-
+			
+			//Hacemos un commit para guardar los datos en la bd
 			transaction.commit();
 			System.out.println("Fase 3 completada");
 
