@@ -6,6 +6,8 @@ import javax.persistence.*;
 public class Motorcycle extends Vehicle {
 
 	private boolean hasSidecar;
+	
+	public Motorcycle() { }
 
 	public Motorcycle(String brand, int year, float price, boolean hasSidecar) {
 		super(brand, year, price);
