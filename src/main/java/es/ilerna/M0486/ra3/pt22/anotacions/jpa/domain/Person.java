@@ -19,7 +19,6 @@ public class Person {
 	@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
 	private List<Vehicle> vehicles = new ArrayList<>();
 	
-	// 🔴 OBLIGATORIO para JPA
 	public Person() {
 	}
 	
